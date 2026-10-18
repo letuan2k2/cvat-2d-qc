@@ -543,7 +543,12 @@ h1, h2, h3 { letter-spacing: -.012em; }
 .side-user { padding: 12px 8px 0; }
 .avatar { background: linear-gradient(135deg, #5b76ff, #8b5cf6); }
 .main { padding: 30px 34px 48px; max-width: 1600px; }
-@media (max-width: 900px) { .nav-group { display: none; } .side-status { display: none; } .main { padding: 18px 16px 32px; } }
+@media (max-width: 900px) {
+  .nav-group { display: none; } .side-status { display: none; } .main { padding: 18px 16px 32px; }
+  .shell { grid-template-columns: minmax(0, 1fr); }      /* man hep: thanh ben thanh dai tren cung, tab cuon ngang */
+  .sidebar { height: auto; padding: 10px 14px; gap: 10px; border-right: 0; }
+  #tabs { flex-direction: row; }
+}
 
 /* --- tieu de trang --- */
 .pagehead { margin-bottom: 20px; }

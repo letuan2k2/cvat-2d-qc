@@ -83,6 +83,12 @@ cvat_2d\cai_dat.bat
 4. Vào **Review job**, bấm **Chọn** để chọn job, rồi bấm **Đánh giá**.
 5. Xem lỗi, bấm **Tool nhầm** ở lỗi tool báo sai, rồi bấm **Đẩy Issue lên CVAT**.
 
+## Bản demo chỉ xem (Vercel)
+
+Thư mục [demo_web/](demo_web/) là bản Web QC **chỉ xem**, chạy không cần GPU hay CVAT, để người chấm mở trên trình duyệt. Bản này dùng kết quả review thật trên ảnh BDD100K (job 39, 4, 2 trên CVAT localhost), xem được mọi trang. Các nút ghi dữ liệu (review mới, đẩy Issue, lưu cài đặt) báo "Bản demo chỉ xem". Không có token, mật khẩu hay khoá trong thư mục này.
+
+Deploy: trên Vercel bấm **Add New → Project**, chọn repo `cvat-2d-qc`, đặt **Root Directory** = `demo_web`, **Framework Preset** = Other, rồi **Deploy**.
+
 ## Các trang của web (giao diện 2026-10-17)
 
 - **Tự review** (trang mở đầu): sơ đồ luồng nộp validation → tool review → trả về annotation / chờ reviewer → nộp lại, kèm số liệu sống. Bảng mỗi job một dòng, % box đúng qua từng vòng. Danh sách job chờ reviewer kiểm chéo.

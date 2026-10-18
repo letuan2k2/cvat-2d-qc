@@ -1,0 +1,25 @@
+﻿frame,anh,so,loai,muc,nhan,x1,y1,x2,y2,ghi_chu
+0,b27098c3-c443b6e3.jpg,1,Sai nhãn,đang xem xét,pedestrian,410,401,426,431,"Có thể sai nhãn: 'pedestrian' này đang ở trên xe 2 bánh, nên là 'rider'."
+0,b27098c3-c443b6e3.jpg,2,Sai kích thước,đang xem xét,car,1190,501,1278,718,Box chưa khít: cạnh dưới thừa 23px.
+0,b27098c3-c443b6e3.jpg,3,Thiếu,đang xem xét,car,486,406,505,422,"Có thể thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy, nằm sát box khác, cần box riêng)."
+0,b27098c3-c443b6e3.jpg,4,Sai viền,đang xem xét,car,1195,510,1280,720,"Có thể polygon 'car' tô thừa ra nền ~24% ở phía dưới, kéo viền vào sát mép vật."
+0,b27098c3-c443b6e3.jpg,5,Sai nhãn,đang xem xét,image_info,0,0,1280,60,"Có thể sai timeofday: đang chọn 'daytime', ảnh trông là 'dawn/dusk'."
+1,b7ad4512-5b2510d8.jpg,1,Sai viền,lỗi,rider,226,358,278,497,Polygon 'rider' tràn ra ngoài box của nó (dưới 14px): polygon và box phải khớp nhau.
+1,b7ad4512-5b2510d8.jpg,2,Sai viền,đang xem xét,bicycle,225,392,278,498,Có thể polygon 'bicycle' tràn ra ngoài box của nó (trên 3px): polygon và box phải khớp nhau.
+1,b7ad4512-5b2510d8.jpg,3,Sai kích thước,đang xem xét,car,480,390,493,421,"Box 'car' quá mảnh (13×31px), không đúng 1 vật. Xoá và vẽ lại."
+1,b7ad4512-5b2510d8.jpg,4,Sai kích thước,đang xem xét,bicycle,217,395,286,501,Box chưa khít: cạnh trái thừa 8px.
+1,b7ad4512-5b2510d8.jpg,5,Sai nhãn,đang xem xét,truck,973,61,1278,636,Có thể sai nhãn: giống 'car' hơn 'truck'.
+2,c323201c-9bcf7cf8.jpg,1,Thừa,đang xem xét,car,840,370,883,410,Có thể box thừa: không thấy 'car' ở đây.
+2,c323201c-9bcf7cf8.jpg,2,Thừa,đang xem xét,car,555,388,599,425,Có thể box thừa: không thấy 'car' ở đây.
+2,c323201c-9bcf7cf8.jpg,3,Thừa,đang xem xét,car,492,380,574,480,Có thể box thừa: không thấy 'car' ở đây.
+2,c323201c-9bcf7cf8.jpg,4,Thừa,đang xem xét,car,35,362,99,393,Có thể box thừa: không thấy 'car' ở đây.
+2,c323201c-9bcf7cf8.jpg,5,Thừa,đang xem xét,car,497,383,568,439,Có thể polygon thừa: không thấy 'car' ở đây.
+2,c323201c-9bcf7cf8.jpg,6,Sai viền,lỗi,car,1015,369,1168,609,"Polygon 'car' tô thừa ra nền ~17% ở giữa / dọc viền, kéo viền vào sát mép vật."
+3,c752e922-ae691e9d.jpg,1,Polygon hỏng,lỗi,car,0,271,870,583,"Polygon 'car' bị xoắn (viền tự cắt nhau), sửa lại thứ tự điểm."
+3,c752e922-ae691e9d.jpg,2,Sai viền,lỗi,car,84,275,355,369,Polygon 'car' tràn ra ngoài box của nó (phải 75px): polygon và box phải khớp nhau.
+3,c752e922-ae691e9d.jpg,3,Sai kích thước,lỗi,car,1217,317,1277,414,Box chưa khít: cạnh trên thừa 16px.
+3,c752e922-ae691e9d.jpg,4,Sai kích thước,đang xem xét,pedestrian,793,296,842,367,Box chưa khít: cạnh phải thừa 8px (vật bị vật khác che một phần nên chưa chắc).
+3,c752e922-ae691e9d.jpg,5,Sai kích thước,đang xem xét,rider,1033,294,1099,496,Box chưa khít: cạnh dưới thừa 40px (vật bị vật khác che một phần nên chưa chắc).
+3,c752e922-ae691e9d.jpg,6,Sai kích thước,đang xem xét,car,1066,323,1280,469,Box chưa khít: cạnh trái thừa 21px.
+3,c752e922-ae691e9d.jpg,7,Sai viền,lỗi,car,0,271,871,584,"Polygon 'car' vẽ lẹm: thiếu ~31% vật ở bên trái, kéo viền ra sát mép vật."
+3,c752e922-ae691e9d.jpg,8,Thiếu,lỗi,image_info,0,0,1280,60,"Thiếu nhãn ảnh 'image_info' (ảnh trông là weather = 'snowy', scene = 'city street', timeofday = 'daytime')."

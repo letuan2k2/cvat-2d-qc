@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/runs/:id/raw/:stem",
+      "destination": "/data/api/runs/:id/raw/:stem.jpg"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/data/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ]
+}

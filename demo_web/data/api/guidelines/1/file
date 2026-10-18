@@ -1,0 +1,17 @@
+1. Pham vi
+Tai lieu gan nhan giao thong 2D cho du an GreenSM.
+
+2. Quy tac chung
+Box om sat vat. Vat bi che van dong box toan bo (amodal).
+
+3.1 O to (car)
+Moi o to dong box om sat ca banh xe. Xe tai (truck) va xe buyt (bus) gan nhan rieng.
+
+3.2 Xe GreenSM
+Taxi mau xanh ngoc cua GreenSM gan nhan GreenSM, khong gan car.
+
+3.3 Xe may (motorcycle)
+Xe may va nguoi lai: nguoi lai co box person rieng.
+
+3.4 Nguoi (person)
+Nguoi di bo va nguoi lai xe deu gan person.

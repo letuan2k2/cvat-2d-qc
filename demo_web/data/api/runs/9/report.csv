@@ -1,0 +1,36 @@
+﻿frame,anh,so,loai,muc,nhan,x1,y1,x2,y2,ghi_chu
+0,b1d0091f-75824d0d.jpg,1,Sai kích thước,không chắc,car,21,385,123,406,"Box 'car' quá dẹt (103×21px), không đúng 1 vật. Xoá và vẽ lại."
+0,b1d0091f-75824d0d.jpg,2,Sai kích thước,lỗi,car,228,375,445,485,"Box chưa khít: cạnh trái thừa 25px, cạnh dưới thiếu 18px."
+0,b1d0091f-75824d0d.jpg,3,Sai kích thước,lỗi,car,621,395,682,443,"Box chưa khít: cạnh phải thiếu 20px, cạnh dưới thiếu 15px."
+0,b1d0091f-75824d0d.jpg,4,Sai kích thước,lỗi,car,479,374,548,430,"Box lệch nhiều so với vật: cạnh trái thiếu 12px, cạnh phải thiếu 13px, cạnh dưới thiếu 21px."
+0,b1d0091f-75824d0d.jpg,5,Thiếu,lỗi,car,0,391,117,410,Thiếu box 'car' ở đây.
+0,b1d0091f-75824d0d.jpg,6,Thiếu,lỗi,car,606,401,626,419,"Thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy, nằm sát box khác, cần box riêng)."
+1,b1d0091f-f2c2d2ae.jpg,1,Thiếu,lỗi,car,96,378,159,399,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,2,Thiếu,lỗi,car,204,381,238,395,"Thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy)."
+1,b1d0091f-f2c2d2ae.jpg,3,Thiếu,lỗi,car,222,404,351,452,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,4,Thiếu,lỗi,car,488,342,840,633,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,5,Thiếu,lỗi,car,830,382,926,462,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,6,Thiếu,lỗi,car,925,289,1132,507,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,7,Thiếu,lỗi,car,1129,406,1278,457,Thiếu box 'car' ở đây.
+1,b1d0091f-f2c2d2ae.jpg,8,Thiếu,lỗi,car,1138,418,1280,468,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,1,Thiếu,lỗi,car,0,265,55,387,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,2,Thiếu,lỗi,pedestrian,146,261,165,308,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,3,Thiếu,lỗi,pedestrian,174,261,193,303,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,4,Thiếu,lỗi,pedestrian,203,264,220,307,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,5,Thiếu,không chắc,car,406,268,420,291,"Có thể thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy)."
+2,b1d0a191-03dcecc2.jpg,6,Thiếu,lỗi,car,417,213,562,357,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,7,Thiếu,lỗi,car,552,271,595,325,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,8,Thiếu,không chắc,car,584,261,608,286,"Có thể thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy)."
+2,b1d0a191-03dcecc2.jpg,9,Thiếu,lỗi,car,597,265,624,289,"Thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy)."
+2,b1d0a191-03dcecc2.jpg,10,Thiếu,lỗi,car,608,272,661,310,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,11,Thiếu,lỗi,car,650,262,690,300,"Thiếu box 'car' ở đây (vật nhỏ ở xa, phóng to để thấy)."
+2,b1d0a191-03dcecc2.jpg,12,Thiếu,lỗi,car,666,266,719,309,Thiếu box 'car' ở đây.
+2,b1d0a191-03dcecc2.jpg,13,Thiếu,lỗi,pedestrian,749,268,774,333,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,14,Thiếu,lỗi,pedestrian,780,273,798,336,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,15,Thiếu,lỗi,pedestrian,830,267,845,309,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,16,Thiếu,không chắc,pedestrian,874,272,891,328,Có thể thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,17,Thiếu,lỗi,pedestrian,977,266,1005,331,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,18,Thiếu,lỗi,pedestrian,1022,270,1050,345,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,19,Thiếu,không chắc,pedestrian,1049,264,1077,343,Có thể thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,20,Thiếu,lỗi,pedestrian,1083,265,1123,360,Thiếu box 'pedestrian' ở đây.
+2,b1d0a191-03dcecc2.jpg,21,Thiếu,không chắc,pedestrian,1256,265,1280,384,Có thể thiếu box 'pedestrian' ở đây.

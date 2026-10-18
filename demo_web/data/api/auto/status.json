@@ -1,0 +1,1 @@
+{"enabled": true, "auto_push": true, "auto_return": true, "connection": "CVAT localhost", "last": {"time": 1792330007.6069725, "jobs": 2, "started": 0, "first": false, "connection": "CVAT localhost"}, "error": null, "interval": 60, "waiting": 0, "current": null, "can_check": true}
