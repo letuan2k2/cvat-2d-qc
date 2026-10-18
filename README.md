@@ -85,6 +85,8 @@ cvat_2d\cai_dat.bat
 
 ## Bản demo chỉ xem (Vercel)
 
+**Dùng thử ngay: https://letuan2k2.github.io/cvat-2d-qc/demo_web/** (GitHub Pages).
+
 Thư mục [demo_web/](demo_web/) là bản Web QC **chỉ xem**, chạy không cần GPU hay CVAT, để người chấm mở trên trình duyệt. Bản này dùng kết quả review thật trên ảnh BDD100K (job 39, 4, 2 trên CVAT localhost), xem được mọi trang. Các nút ghi dữ liệu (review mới, đẩy Issue, lưu cài đặt) báo "Bản demo chỉ xem". Không có token, mật khẩu hay khoá trong thư mục này.
 
 Deploy: trên Vercel bấm **Add New → Project**, chọn repo `cvat-2d-qc`, đặt **Root Directory** = `demo_web`, **Framework Preset** = Other, rồi **Deploy**.
