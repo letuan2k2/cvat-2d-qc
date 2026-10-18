@@ -242,13 +242,13 @@ Bấm **Copy link gửi labeler** (hoặc mở link trong Issue tổng kết) đ
 | Trang | Ai dùng | Chức năng |
 | --- | --- | --- |
 | **Tổng quan** | Mọi vai trò | Trong 7 / 30 / 90 ngày: số lần review, tỉ lệ đạt, % box đúng trung bình, số lỗi, Issue đã đẩy, **tỉ lệ tool nhầm**; biểu đồ loại lỗi hay gặp; xu hướng theo ngày; **Hiệu quả Issue** đo trên CVAT (bấm Đo); bảng **theo labeler** (người được giao job trên CVAT) xếp từ thấp đến cao |
-| **Tự review** (trang mở đầu) | Mọi vai trò; nút Kiểm tra ngay: admin | Trạng thái theo dõi (CVAT nào, lần hỏi gần nhất); sơ đồ luồng Annotator nộp → Web QC phát hiện → Tool review → trả về annotation / chờ reviewer → sửa và nộp lại, kèm số liệu sống; 6 số liệu (job đã tự review, % lần bị trả về, vòng / job, Issue tự đẩy, thời gian TB); **bảng mỗi job một dòng** với % box đúng qua từng vòng và kết quả gần nhất; **job chờ reviewer kiểm chéo**; annotator bị trả về nhiều nhất. Tự làm mới mỗi 15 giây |
+| **Tự review** (trang mở đầu) | Mọi vai trò; nút Kiểm tra ngay: admin | Trạng thái theo dõi (CVAT nào, lần hỏi gần nhất); sơ đồ luồng Annotator nộp → Web QC phát hiện → Tool review → trả về annotation / chờ reviewer → sửa và nộp lại, kèm số liệu ngay trên từng bước (số job, lần review, thời gian TB, số lần trả về / giữ, vòng / job); **bảng mỗi job một dòng** với % box đúng qua từng vòng, kết quả gần nhất và tổng số Issue đã tự đẩy; **job chờ reviewer kiểm chéo**. Tự làm mới mỗi 15 giây |
 | **Review job** | Mọi vai trò | Thanh công cụ (kết nối, job + hộp chọn job, task, guideline, chế độ, tuỳ chọn), dòng ngữ cảnh, kết quả với 4 chế độ xem (danh sách lỗi + ảnh, Phân tích, theo khung hình, Issue trên CVAT), Tool nhầm, ghi chú trên ảnh, sửa lời nhắn, đẩy Issue |
 | **Lịch sử** | Mọi vai trò | Mọi lần review: job, task, labeler, người chạy ("tự động" nếu tự review khi sang validation, "webhook" nếu qua webhook), kết quả, % box đúng, lỗi / đang xem xét, số tool nhầm, số Issue. Lọc theo job và theo tên |
 | **Độ tin cậy tool** | Mọi vai trò | Số đo độ chính xác **của tool** trên ảnh có đáp án: bắt được lỗi, Issue chắc chắn đúng, báo nhầm / 100 box, tool nói "sạch" thì đúng; theo loại lỗi; trước / sau cải tiến; theo điều kiện ảnh (ngày, đêm, thời tiết); segmentation; test đầu cuối trên CVAT; cách đo và các tầng kiểm tra. Đổi bộ dữ liệu BDD100K / ảnh Việt Nam. Số liệu ở `static/do_tin_cay.json`, tạo bằng `tao_do_tin_cay.py` |
 | **Guideline** | Xem: mọi vai trò. Sửa: qc, admin | Tải guideline lên; mỗi guideline có 3 tab: **Luật kiểm tra** (trình soạn dạng bảng), **Nội dung guideline** (tra cứu), **YAML** (nâng cao) |
 | **Kết nối CVAT** | Xem, thử: mọi vai trò. Thêm/sửa/xoá: qc, admin | Danh sách kết nối, thử kết nối, đặt mặc định, thêm / sửa |
-| **Cài đặt** | Đổi mật khẩu: mọi vai trò. Còn lại: admin | Ngưỡng đạt, chế độ mặc định, **guideline mặc định**, **tự review khi job sang validation** (tự đẩy lỗi chắc chắn, tự trả job về annotation khi còn lỗi), **webhook CVAT**, tài khoản |
+| **Cài đặt** | Đổi mật khẩu: mọi vai trò. Còn lại: admin | Ngưỡng đạt, chế độ mặc định, **guideline mặc định**, **tự review khi job sang validation** (tự đẩy lỗi chắc chắn, tự trả job về annotation khi còn lỗi), **webhook CVAT** (thu gọn, ít dùng), tài khoản |
 
 Thanh bên trái chia 3 nhóm (Vận hành, Báo cáo, Thiết lập) và luôn hiện trạng thái: máy CVAT đang chọn, tổ chức, GPU, webhook, tự review (chấm xanh nhấp nháy khi đang theo dõi). Link gửi cho người khác được:
 
@@ -269,7 +269,7 @@ Cài đặt → **Tự review khi job chuyển sang validation** → tick Bật,
 
 ### Webhook CVAT (tự review khi job hoàn thành)
 
-1. Admin vào **Cài đặt** → tick **Bật webhook** → chọn kết nối → **Lưu**. Web hiện **Target URL** và **Secret**.
+1. Admin vào **Cài đặt**, mở mục **Webhook CVAT** (thu gọn ở cuối khung Đánh giá) → tick **Bật webhook** → chọn kết nối → **Lưu**. Web hiện **Target URL** và **Secret**.
 2. Trên CVAT: mở Project hoặc Task → **Actions → Setup webhooks → Create** → dán Target URL và Secret, chọn sự kiện **job** (update), content type `application/json`.
 3. Khi labeler chuyển job sang **completed**, CVAT gọi sang web QC; web tự xếp một lần review vào hàng đợi (người chạy hiện là "webhook"). Nếu bật "tự đẩy", lỗi chắc chắn được đẩy luôn, không chờ người duyệt.
 4. Điều kiện: máy CVAT phải truy cập được máy chủ QC (chạy `web_qc.bat --lan`, mở tường lửa). Web kiểm chữ ký `X-Signature-256` của CVAT, sai chữ ký thì từ chối. Job 3D bị bỏ qua.
@@ -301,7 +301,7 @@ Mỗi dự án tải guideline lên **một lần**. Guideline được dùng th
 1. Vào tab **Guideline**, nhập tên (ví dụ "GreenSM 2D v3"), chọn file, bấm **Tải lên**.
 2. Bấm vào tên guideline để xem nội dung theo mục và thử ô tìm kiếm.
 3. Nhập số **Task**, bấm **Đọc guideline + lấy nhãn từ task**. Web đọc danh sách nhãn và thuộc tính của task (qua kết nối đang chọn) và điền sẵn bảng: mỗi nhãn một dòng, tự đoán cột "Tool hiểu là" cho nhãn quen (car, pedestrian, two-wheels…), thuộc tính của nhãn hiện mờ trong ô để điền cho nhanh. Web cũng **tự đọc các câu yêu cầu trong guideline** (kích thước tối thiểu, vật dưới N px không bắt buộc gán, vẽ toàn bộ vật hay phần nhìn thấy, Shape hay Track, box kèm polygon, người lái có box riêng, thuộc tính bắt buộc) và điền vào bảng, kèm câu gốc bên dưới để người QC kiểm lại.
-4. Kiểm lại và điền thêm từng cột theo guideline: kích thước tối thiểu, tỉ lệ rộng/cao, thuộc tính bắt buộc, không để mặc định, tên gọi khác, số mục; và phần **Quy tắc chung** (người lái có box riêng, vật bị che, Shape hay Track, box kèm polygon, box vượt mép ảnh, **không bắt buộc gán vật dưới N px**). Bấm **Lưu luật**. Web báo nếu có giá trị lạ.
+4. Kiểm lại từng dòng: tool hiểu là, thuộc tính bắt buộc, số mục. Các cột ít dùng (kích thước tối thiểu, tỉ lệ rộng/cao, không để mặc định, tên gọi khác) ẩn sẵn, bấm **Hiện cột nâng cao** để sửa. Phần **Quy tắc chung**: người lái có box riêng, **không bắt buộc gán vật dưới N px**, vật bị che, Shape hay Track; mục **Tuỳ chọn nâng cao** có box kèm polygon, box vượt mép ảnh, mục chung. Bấm **Lưu luật**. Web báo nếu có giá trị lạ.
 5. Bấm **Gán guideline cho task**. Từ đó review job thuộc task này tự dùng guideline này, và dòng ngữ cảnh trên trang Review báo "Guideline: … · N nhãn có luật".
 6. Tab **YAML** cho người quen viết file luật trực tiếp; hai tab luôn đồng bộ khi lưu.
 

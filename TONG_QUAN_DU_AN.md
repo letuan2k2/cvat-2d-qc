@@ -257,7 +257,7 @@ Thêm `--port 8080` nếu muốn dùng cổng khác.
 
 | Trang | Để làm gì |
 |---|---|
-| **Tự review** (trang mở đầu) | Sơ đồ luồng kèm số liệu sống; bảng mỗi job một dòng, có % box đúng qua từng vòng; job chờ reviewer; annotator bị trả về nhiều nhất |
+| **Tự review** (trang mở đầu) | Sơ đồ luồng kèm số liệu sống; bảng mỗi job một dòng, có % box đúng qua từng vòng; job chờ reviewer (annotator bị trả về nhiều nhất xem ở Tổng quan → Theo labeler) |
 | **Tổng quan** | Tỉ lệ đạt, loại lỗi hay gặp, xu hướng theo ngày, thống kê theo labeler, **Hiệu quả Issue** đo trên job thật (% Issue đúng, lỗi bắt trước khi review chéo, số vòng trả về / job) |
 | **Review job** | Review một job bằng tay. Có danh sách lỗi kèm ảnh phóng to; chế độ **Phân tích** vẽ nhãn của labeler cạnh những gì tool thấy; xem theo khung hình; xem Issue trên CVAT; nút Tool nhầm, sửa lời nhắn, ghi chú trên ảnh; đẩy Issue |
 | **Lịch sử** | Mọi lần review, lọc theo job hoặc người |

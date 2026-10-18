@@ -720,3 +720,12 @@ input, select, textarea { border-radius: 9px; }
 @media (max-width: 640px) { .tiers { grid-template-columns: 1fr; } }
 .limits { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink-2); font-size: 13.5px; }
 #trustDate { margin-top: 14px; }
+
+/* --- gon giao dien: an phan nang cao, mo khi can --- */
+.rule-tbl.hide-adv .adv { display: none; }
+.rule-more, .set-more { flex-basis: 100%; margin-top: 4px; }
+.rule-more summary, .set-more summary { cursor: pointer; font-size: 13px; color: var(--accent); font-weight: 600; width: fit-content; padding: 4px 0; }
+.rule-more-body { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-top: 10px; }
+.set-more { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.set-more .stack { margin-top: 10px; }
+.rule-general h3, .rule-general > .chk { flex-basis: 100%; }

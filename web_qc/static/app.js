@@ -281,9 +281,7 @@ function showResult(r) {
     <div class="kpi ${s.unsure ? "warn" : ""}"><div class="v">${s.unsure ?? 0}</div><div class="k">Đang xem xét, cần người xem</div></div>
     <div class="kpi"><div class="v">${s.boxes ?? 0}</div><div class="k">Box trong ${s.frames ?? 0} ảnh</div></div>
     <div class="kpi"><div class="v">${sec < 90 ? Math.round(sec) + "s" : (sec / 60).toFixed(1) + "m"}</div><div class="k">Thời gian chạy · ${s.frames ? (sec / s.frames).toFixed(1) : "?"}s/ảnh</div></div>`;
-  $("#runStatus").className = "pill " + (pass ? "pass" : "fail");
-  $("#runStatus").textContent = pass ? `Đạt · ${pctTxt(pct)} box đúng` : `Chưa đạt · ${pctTxt(pct)} < ${(THR() * 100).toFixed(0)}%`;
-  $("#runStatus").title = `Đã chấm xong. ${pctTxt(pct)} box không có lỗi chắc chắn, ngưỡng đạt là ${(THR() * 100).toFixed(0)}% (đổi trong Cài đặt).`;
+  $("#runStatus").className = "pill hidden";          // da cham xong: o so lieu ben duoi da ghi Dat / Chua dat, khong lap lai
   if (r.skipped_labels?.length) $("#runMeta").textContent = runMeta(r) + ` · tool không đánh giá được nhãn: ${r.skipped_labels.join(", ")}`;
   const c = r.compare;
   $("#runCompare").innerHTML = c ? `<span class="c">So với lần #${c.prev_id}${c.prev_pct != null ? " (" + pctTxt(c.prev_pct) + ")" : ""}</span>` +
@@ -759,11 +757,11 @@ function ruleRow(name, sp = {}) {
   return `<tr>
     <td><input class="in-name" value="${esc(name)}" aria-label="Tên nhãn"></td>
     <td><select class="in-tool" aria-label="Tool hiểu là"><option value="">— không kiểm tầng 2 —</option>${tc.map(c => `<option ${sp.loai_tool === c ? "selected" : ""}>${c}</option>`).join("")}</select></td>
-    <td><input class="in-num in-min" inputmode="numeric" value="${sp.kich_thuoc_toi_thieu_px || ""}" placeholder="0" aria-label="Kích thước tối thiểu"></td>
-    <td><div class="in-ratio"><input class="in-rmin" inputmode="decimal" value="${rr[0] ?? ""}" placeholder="min" aria-label="Tỉ lệ tối thiểu"><span>–</span><input class="in-rmax" inputmode="decimal" value="${rr[1] ?? ""}" placeholder="max" aria-label="Tỉ lệ tối đa"></div></td>
+    <td class="adv"><input class="in-num in-min" inputmode="numeric" value="${sp.kich_thuoc_toi_thieu_px || ""}" placeholder="0" aria-label="Kích thước tối thiểu"></td>
+    <td class="adv"><div class="in-ratio"><input class="in-rmin" inputmode="decimal" value="${rr[0] ?? ""}" placeholder="min" aria-label="Tỉ lệ tối thiểu"><span>–</span><input class="in-rmax" inputmode="decimal" value="${rr[1] ?? ""}" placeholder="max" aria-label="Tỉ lệ tối đa"></div></td>
     <td><input class="in-txt in-req" value="${esc(list2txt(sp.thuoc_tinh_bat_buoc))}" placeholder="${attrs?.length ? esc(attrs.join(", ")) : "occluded, truncated"}" aria-label="Thuộc tính bắt buộc"></td>
-    <td><input class="in-txt in-def" value="${esc(list2txt(sp.khong_de_mac_dinh))}" aria-label="Không để mặc định"></td>
-    <td><input class="in-txt in-syn" value="${esc(list2txt(sp.dong_nghia))}" placeholder="ô tô, xe hơi" aria-label="Tên gọi khác"></td>
+    <td class="adv"><input class="in-txt in-def" value="${esc(list2txt(sp.khong_de_mac_dinh))}" aria-label="Không để mặc định"></td>
+    <td class="adv"><input class="in-txt in-syn" value="${esc(list2txt(sp.dong_nghia))}" placeholder="ô tô, xe hơi" aria-label="Tên gọi khác"></td>
     <td><input class="in-muc" value="${esc(sp.muc || "")}" placeholder="3.1" aria-label="Mục guideline"></td>
     <td class="r"><button type="button" class="link-danger rule-del" aria-label="Xoá dòng">Xoá</button></td></tr>`;
 }
@@ -803,6 +801,10 @@ function collectRules() {
 }
 $("#ruleAdd").onclick = () => { $("#ruleTable tbody .rule-empty")?.remove(); $("#ruleTable tbody").insertAdjacentHTML("beforeend", ruleRow("", {})); $("#ruleTable tbody tr:last-child .in-name").focus(); };
 $("#ruleTable tbody").addEventListener("click", e => { if (e.target.classList.contains("rule-del")) e.target.closest("tr").remove(); });
+$("#ruleAdv").onclick = () => {                          // cot it dung (kich thuoc, ti le, mac dinh, ten khac): an mac dinh cho bang gon
+  const show = $("#ruleTable").classList.toggle("hide-adv") === false;
+  $("#ruleAdv").textContent = show ? "Ẩn cột nâng cao" : "Hiện cột nâng cao";
+};
 $("#ruleSave").onclick = async () => {
   try {
     const r = await api(`/api/guidelines/${CUR_G.id}/rules`, { method: "PUT", json: { rules_obj: collectRules() } });
@@ -907,8 +909,7 @@ $("#connForm").onsubmit = async e => {
 // ============================================================ cai dat
 async function loadSettings() {
   await loadConfig();
-  $("#cfgBox").innerHTML = `<dt>Máy chạy</dt><dd>${esc(CFG.device)}</dd><dt>Kết nối</dt><dd>${CFG.connections.length} kết nối CVAT</dd>
-    <dt>Số job/task trong .env</dt><dd>${CFG.env_job_id ?? "—"} / ${CFG.env_task_id ?? "—"}</dd>`;
+  $("#cfgBox").innerHTML = `<dt>Máy chạy</dt><dd>${esc(CFG.device)}</dd><dt>Kết nối</dt><dd>${CFG.connections.length} kết nối CVAT</dd>`;
   if (ME.role !== "admin") return;
   const s = await api("/api/settings");
   $("#sThr").value = (s.pass_threshold * 100).toFixed(1).replace(/\.0$/, "");
@@ -1225,8 +1226,8 @@ function renderAutoStatus(st) {
   const L = st.last;
   $("#autoMsgTop").innerHTML = st.error ? bad("Lần hỏi CVAT gần nhất bị lỗi: " + st.error)
     : !st.enabled ? `Chưa bật. Vào <a href="#" data-goto="settings">Cài đặt</a> → <b>Tự review khi job chuyển sang validation</b>, tick Bật rồi Lưu.`
-    : L ? `Lần kiểm tra gần nhất ${fmtTime(L.time)}: ${L.jobs} job đang ở validation${L.first ? " (lần đầu chỉ ghi nhận, không chạy job cũ)" : `, xếp ${L.started} lần review mới`}. ` +
-          `${st.auto_push ? "Tự đẩy lỗi chắc chắn lên CVAT" : "Không tự đẩy Issue"}${st.auto_return ? ", còn lỗi chắc chắn thì trả job về annotation" : ""}.`
+    : L ? `Lần kiểm tra gần nhất ${fmtTime(L.time)}: ${L.jobs} job đang ở validation${L.first ? " (lần đầu chỉ ghi nhận, không chạy job cũ)" : `, xếp ${L.started} lần review mới`}.` +
+          `${st.auto_push ? "" : " Đang tắt tự đẩy Issue."}${st.auto_return ? "" : " Đang tắt tự trả job."}`
     : "Đang chờ lần kiểm tra đầu tiên (tối đa 60 giây).";
   $("#autoCheckBtn").classList.toggle("hidden", !st.can_check || !st.enabled);
 }
@@ -1252,16 +1253,12 @@ function renderAuto() {
   const avgRounds = jobs.length ? jobs.reduce((a, j) => a + j.rounds, 0) / jobs.length : null;
   // so tren so do luong
   const n = (k, v, sub) => { const el = $(`#autoFlow em[data-n="${k}"]`); if (el) el.innerHTML = v == null ? "" : `<strong>${v}</strong>${sub ? " " + sub : ""}`; };
-  n("submitted", jobs.length, "job"); n("queue", (st.waiting || 0) + (st.current ? 1 : 0), "đang chờ / chạy"); n("runs", done.length, "lần review");
-  n("returned", ret, "lần"); n("kept", kept, "lần"); n("rounds", avgRounds == null ? null : avgRounds.toFixed(1), "vòng / job");
-  const k = (v, label, cls = "", tip = "") => `<div class="kpi ${cls}"${tip ? ` data-tip="${esc(tip)}"` : ""}><div class="v">${v}</div><div class="k">${label}</div></div>`;
-  $("#autoKpis").innerHTML =
-    k(jobs.length, "Job đã tự review") +
-    k(done.length, "Lần review tự động", "", "Mỗi lần annotator nộp validation là 1 lần.") +
-    k(done.length ? pct0(ret / done.length) : "—", "Lần bị trả về annotation", ret / Math.max(1, done.length) > .5 ? "warn" : "", "Lần review còn lỗi chắc chắn nên job bị trả về cho annotator sửa.") +
-    k(avgRounds == null ? "—" : avgRounds.toFixed(1), "Vòng review / job", "", "Số lần một job được review cho tới nay.") +
-    k(issues, "Issue tự đẩy lên CVAT") +
-    k(secs.length ? (secs.reduce((a, b) => a + b, 0) / secs.length / 60).toFixed(1) + "m" : "—", "Thời gian TB / lần review");
+  // so lieu nam ngay tren so do luong (truoc day con 1 hang KPI lap lai cac so nay)
+  const avgMin = secs.length ? (secs.reduce((a, b) => a + b, 0) / secs.length / 60).toFixed(1) : null;
+  n("submitted", jobs.length, "job"); n("queue", (st.waiting || 0) + (st.current ? 1 : 0), "đang chờ / chạy");
+  n("runs", done.length, "lần review" + (avgMin ? ` · TB ${avgMin} phút` : ""));
+  n("returned", ret, "lần"); n("kept", kept, "lần");
+  $("#autoTblMeta").textContent = `Mỗi job một dòng, gộp mọi vòng review · đã tự đẩy ${issues} Issue lên CVAT.`; n("rounds", avgRounds == null ? null : avgRounds.toFixed(1), "vòng / job");
   // bang job
   const rows = jobs.filter(j => !AUTO.filter || j.ret === AUTO.filter);
   $("#autoTable tbody").innerHTML = rows.map(j => {
@@ -1278,12 +1275,6 @@ function renderAuto() {
   $("#autoWaitList").innerHTML = wait.map(j => `<li data-id="${j.last.id}"><span class="wl-job">Job ${j.job}</span><span class="wl-who">${esc(j.last.assignee || "—")}</span>
       <span class="tag ${j.last.stats?.unsure ? "s0" : "k"}">${j.last.stats?.unsure || 0} đang xem xét</span><svg class="ic"><use href="#i-arrow"/></svg></li>`).join("")
     || `<li class="wl-empty">Không có job nào đang chờ reviewer.</li>`;
-  // annotator bi tra ve
-  const ppl = {};
-  jobs.forEach(j => { const a = j.last.assignee || "(chưa giao)"; const p = ppl[a] || (ppl[a] = { jobs: 0, ret: 0 }); p.jobs++; p.ret += j.returned; });
-  const top = Object.entries(ppl).filter(([, v]) => v.ret).sort((a, b) => b[1].ret - a[1].ret).slice(0, 8), mx = Math.max(1, ...top.map(x => x[1].ret));
-  $("#autoPeople").innerHTML = top.map(([a, v]) => `<div class="bar-row" data-tip="${esc(a)}: ${v.ret} lần bị trả về trên ${v.jobs} job"><span>${esc(a)}</span><span class="bar"><i style="width:${(v.ret / mx * 100).toFixed(1)}%"></i></span><span class="n">${v.ret}</span></div>`).join("")
-    || `<p class="empty-note">Chưa có job nào bị trả về.</p>`;
 }
 $("#autoTable tbody").addEventListener("click", e => { const tr = e.target.closest("tr[data-id]"); if (tr) openRun(+tr.dataset.id); });
 $("#autoWaitList").addEventListener("click", e => { const li = e.target.closest("li[data-id]"); if (li) openRun(+li.dataset.id); });
